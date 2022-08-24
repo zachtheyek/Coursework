@@ -8,6 +8,7 @@ Hands-on exposure to the following major topics: Problem solving, algorithm desi
 Hands-on exposure to major topics in data structures and control, including file I/O; abstract data types; static and dynamic data structures; pointers and pointer operations; templates, memory addresses; garbage collection; memory leak; function and operator overloading; constructors and destructors; deep and shallow copying; class concepts; multi-dimensional and dynamic arrays; linked lists; doubly-linked lists; stacks, queues and their implementations and applications. The course provides a computer laboratory component to ensure practice with the above concepts.
 
 ### CSIT 311 - Assembly Language & Computer Organizations
+Introduction to the basic concepts of computer organization, digital logic, data representation, and machine instructions repertoire; memory access and storage; instruction execution; assembly language; computer organization; levels of computer structures; data representation and transfer; digital arithmetic; memory structure and addressing methods; cache; secondary memory structure and organization.
 
 ### CSIT 341 - Data Structures
 Review of basic data structures and algorithmic complexities; recursion; topological order; Sorting and searching; Huffman codes; tries; binary trees; binary search trees; tree traversals; general trees, heaps, balanced trees; priority queues; hashing; graphs, graph algorithms.
