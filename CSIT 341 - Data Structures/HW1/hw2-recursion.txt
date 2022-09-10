@@ -1,0 +1,15 @@
+csit341 – Data Structures
+hw1 – ch2 – recursion
+Practice question(s). (Do not submit with homework.)
+    Question 1: pg 53
+    2.4.1: pg 67
+    Exercise 1: pg 89
+
+Please submit your own code and do not share your solutions with anyone. You can discuss the concept with other students but always write your own code.
+For copied submissions: If two students copy a code and the code earns 8/10 marks, each student will get 4 marks for their submission.
+Note that changing variable names and moving statements around does not mean that code is original. It can be easily identified and will be subject to the rule described above.
+Solve each problem below in a separate .cpp file named problem1.cpp and problem2.cpp respectively and upload to your repository on Github.
+
+Homework Problems:
+1. Write a C++ program that contains a recursive function that returns the sum of squares of 1 through n where n > 0. Give pre- and post-conditions as commented text in your C++ file. Call the function in the program to test it.
+2. Write a C++ program that contains a recursive function that prints the digits of a positive decimal integer in reverse order. Give pre- and post-conditions as commented text in your C++ file. Call the function in the program to test it.
