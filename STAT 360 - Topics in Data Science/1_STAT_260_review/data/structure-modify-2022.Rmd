@@ -1,0 +1,220 @@
+---
+title: "Modifying Data Structures"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r message=FALSE, warning=FALSE}
+library(mosaic)
+library(tidyverse)
+```
+```{r}
+# Questions: Given a data structure, such a vector or a data
+# frame:
+# (1) How do we modify an element?
+# (2) How do we add elements to the structure?
+# (3) How do we delete elements from the structure?
+#
+# Let's begin with a vector.
+primes <- c(11,13,15,19)
+primes
+```
+```{r}
+# Let's change the third element from 15 to 17.
+primes[3] <- 17
+primes
+```
+```{r}
+# Let's add a fifth element.
+primes[5] <- 23
+primes
+```
+```{r}
+# Let's delete the fourth element.
+some_primes <- primes[-4]
+some_primes
+```
+```{r}
+# Let's get fancy!
+two_digit_numbers <- 10:99
+two_digit_numbers
+```
+```{r}
+# Delete 31 through 51.
+some_two_digit_numbers <- two_digit_numbers[-(22:42)]
+some_two_digit_numbers
+```
+```{r}
+# Delete the even numbers.
+odd_two_digit_numbers <- two_digit_numbers[-(seq(1,89,2))]
+odd_two_digit_numbers
+```
+```{r}
+# From the preceding result, delete the non-primes.
+odds <- odd_two_digit_numbers # Give the vector a shorter name.
+two_digit_primes <- odds[c(1,2,4,5,7,10,11,14,16,17,19,22,25,
+                           26,29,31,32,35,36,39,44)]
+two_digit_primes
+```
+
+```{r}
+# Exercise: What happens if we try this:
+# primes[7] <- 31
+```
+```{r}
+# Matrix Example: Solve the following system of linear equations
+# using Gaussian elimination:
+#  3x +  y + 2z = 1
+#   x +       z = 0
+# -2x + 2y - 3z = 5
+#
+# Solution: Let's begin with the first two rows of the coefficient
+# matrix C
+c <- matrix(c(3,1,2,1,0,1),2,3,byrow = TRUE)
+c
+```
+```{r}
+# Next. we add the third row to C.  To add a row to a matrix, we
+# use the rbind() function
+c <- rbind(c,c(-2,2,-3))
+c
+```
+```{r}
+# Next, we add the column of constant terms to C to obtain the
+# augmented matrix A.  To add a column to a matrix, we use the
+# cbind() function.
+a <- cbind(c,c(1,0,5))
+a
+```
+```{r}
+# For the sake of illustration, let's change to element in row 2
+# and column 4 of A to 3, and then change it back to 0.
+a[2,4] <- 3
+a
+```
+```{r}
+a[2,4] <- 0
+a
+```
+```{r}
+# A type 3 elementary row operation: Replace row 3 of A with
+# 2(row 2) + (row 3).
+a[3,] <- 2*a[2,] + a[3,]
+a
+```
+```{r}
+# A type 2 elementary row operation: Interchange (swap) row 1 and
+# row 2 of A.
+temp <- a[1,]
+a[1,] <- a[2,]
+a[2,] <- temp
+a
+```
+```{r}
+# Exercise: A type 1 elementary row operation is to multiply a row
+# by a number.  Multiply row 2 of A by 4, and then multiply row 2 by
+# 1/4 to restore A to the matrix shown above.
+#
+# Finishing our example ...
+# Add -3 times row 1 to row 2.
+a[2,] <- -3*a[1,] + a[2,]
+a
+```
+```{r}
+# Add -2 times row 2 to row 3.
+a[3,] <- -2*a[2,] + a[3,]
+a
+```
+```{r}
+# The above matrix is the augmented matrix for the following system
+# of linear equations:
+# x +     z = 0
+#     y - z = 1
+#         z = 3
+# This system is easily solved to yield the solution x = -3, y = 4,
+# and z = 3.
+#
+# Data Frames: Working with data frames is similar to working with
+# vectors.  First, let's create a small data frame.
+name = c("Curly","Joe","Moe","Shemp")
+siblings = c(6L,4L,2L,3L)
+height = c(74.5,70,59.8,62)
+gender = c("M","M","F","M")
+my_data1 <- tibble(name,siblings,height,gender)
+my_data1
+```
+```{r}
+# Let's access some elements.
+# Accessing the element in row 2 and column 3:
+my_data1[2,3]
+```
+```{r}
+# Another way:
+my_data1[2,"height"]
+```
+
+```{r}
+# Accessing the third row:
+my_data1[3,]
+```
+```{r}
+# Accessing the third column:
+my_data1[,3]
+```
+```{r}
+# Accessing the name of the second column:
+names(my_data1)[2]
+```
+
+```{r}
+# Modifying the value in row 3 and column 2:
+my_data1[3,2] <- 1
+my_data1
+```
+```{r}
+# Changing the name of column 4:
+names(my_data1)[4] <- "sex"
+my_data1
+```
+
+```{r}
+# Next, let's add a fifth column to my_data1.  To do this, we use
+# cbind().
+eyes <- c("green","blue","hazel","blue")
+my_data1 <- cbind(my_data1,eyes)
+my_data1
+```
+```{r}
+# Lastly, let's create a second data frame with the same column
+# names, and then use rbind() to combine them.
+name <- c("Tom","Zoe")
+siblings <- c(5L,2L)
+height <- c(68.4,51)
+sex <- c("M","F")
+eyes <- c("blue","brown")
+my_data2 <- tibble(name,siblings,height,sex,eyes)
+my_data2
+
+```
+```{r}
+my_data <- rbind(my_data1,my_data2)
+my_data
+```
+```{r}
+# An alternate solution:
+mydata <- rbind(my_data1,
+                list("Tom",5L,68.4,"M","blue"),
+                list("Zoe",2L,51,"F","brown"))
+mydata
+```
+```{r}
+# Delete row 5 from mydata (without saving the result).
+mydata[-5,]
+```
+```{r}
+# Finally, let's delete column 2.
+mydata[,-2]
+```
+
+

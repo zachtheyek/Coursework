@@ -1,0 +1,200 @@
+---
+title: "Basic Data Types and Structures"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r message=FALSE, warning=FALSE}
+# Not that we'll need them here, but I like to routinely load the
+# tidyverse and mosaic packages.
+library(tidyverse)
+library(mosaic)
+```
+```{r}
+# To begin, we'll cover the following five data types: logical
+# (TRUE or FALSE), numeric (double), integer, complex, and
+# character (string).  Data types associated with dates and
+# times are covered under the lubridate package.
+# Here are some examples.
+answer <- TRUE
+answer
+```
+```{r}
+# One can check the type of a value by using the class() command.
+class(answer)
+```
+```{r}
+pi <- 3.14159
+pi
+```
+```{r}
+class(pi)
+```
+```{r}
+# Let's assign the value 7 to the variable lucky. What type
+# does it have?
+lucky <- 7
+lucky
+```
+```{r}
+class(lucky)
+```
+```{r}
+# If we want to get an integer, we need to put an "L" after the number.
+n <- 7L
+n
+```
+```{r}
+class(n)
+```
+```{r}
+z <- 2 + 3i
+z
+```
+```{r}
+class(z)
+```
+```{r}
+name <- "Betty"
+name
+```
+```{r}
+class(name)
+```
+```{r}
+# Actually, each of the above values is a vector of length 1.
+# In general, a vector is a sequence of values all of the same type.
+# A vector can be created using the c() function or seq() function.
+# Here are some examples:
+days_of_week <- c("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
+days_of_week
+```
+```{r}
+class(days_of_week)
+```
+```{r}
+# If you haven't already, look under the "Environment" tab
+# to see all of the variables we've created thus far.
+#
+# The length() function can be used to compute the length of a vector;
+# for example:
+length(days_of_week)
+```
+```{r}
+odds <- seq(1, 9, by = 2)
+odds
+```
+```{r}
+class(odds)
+```
+```{r}
+# An example using the ":" operator:
+digits <- 0:9
+digits
+```
+```{r}
+some_primes <- c(11L,13L,17L,19L)
+some_primes
+```
+```{r}
+class(some_primes)
+```
+```{r}
+fourth_roots_of_unity <- c(1,0 + 1i,-1,0 - 1i)
+fourth_roots_of_unity
+```
+```{r}
+class(fourth_roots_of_unity)
+```
+```{r}
+# To access the jth element of the vector v, use v[j].
+congruent_to_one_mod_three <- seq(1,22,by = 3)
+congruent_to_one_mod_three
+```
+```{r}
+congruent_to_one_mod_three[5]
+```
+```{r}
+# Next, we consider some of R's data structures.
+# Lists: A list is similar to a vector, except it can be
+# heterogeneous, meaning that its elements can have different types.
+# The list() command can be used to create a list.
+my_list <- list(FALSE,2.718,69L,"blue")
+my_list
+```
+```{r}
+# As the above output suggests, an element of a list may be a
+# list itself.  For instance, here's a weird example:
+weird_list <- list(1, list(2,3), list(4,list(5)))
+weird_list
+```
+```{r}
+# Elements of a list are accessed just like vector elements.
+my_list[4]
+
+```
+```{r}
+weird_list[2]
+```
+```{r}
+# Alternately, the elements of a list may be named, and then
+# accessed via their names.
+names(my_list) <- c("first","second","third","fourth")
+my_list
+```
+```{r}
+my_list$second
+```
+```{r}
+# Matrices: A matrix contains elements of the same type arranged into
+# rows and columns.  A matrix is created using the matrix() command,
+# giving the vector of elements, the number of rows, and the number
+# of columns.  (Also, the rows and columns may be named, but we'll
+# skip that feature.)  Here, we create a 3 by 4 matrix:
+my_matrix <- matrix(c(7,1,-5,2,-1,-2,-8,2,-9,-1,6,9),3,4)
+my_matrix
+
+```
+```{r}
+# Note that the elements were arranged by column, rather than by row.
+# The default value of the "byrow" parameter is FALSE.
+# If we want the elements to be arranged by row, we set byrow equal
+# to TRUE.
+my_matrix <- matrix(c(7,1,-5,2,-1,-2,-8,2,-9,-1,6,9),3,4,
+                    byrow = TRUE)
+my_matrix
+```
+```{r}
+# Elements of a matrix are accessed in the obvious way.
+my_matrix[2,3]
+```
+```{r}
+# R also allows for arrays with any number of dimensions.
+#
+# Data Frames: The primary structure that we deal with in data science
+# is the data frame.  A data frame is similar to a matrix, with the
+# columns being named.  Often, a data frame is automatically created
+# when data is imported.  A data frame can also be constructed by first
+# creating the columns, and then using the tibble() command to
+# organize the columns into a data frame.  Here is an example:
+name <- c("Curly","Joe","Moe","Shemp")
+siblings <- c(6L,4L,2L,3L)
+height <- c(74.5,70,59.8,62)
+gender <- c("M","M","F","M")
+my_data_frame <- tibble(name,siblings,height,gender)
+my_data_frame
+```
+```{r}
+# Notice that the type for each column is indicated.
+# Extra Credit: Since there are a limited number of possible values
+# for the gender variable, we might want to make it a "factor".
+# We can do this as follows:
+my_data_revised <- my_data_frame %>%
+  mutate(gender = as.factor(gender))
+my_data_revised
+```
+```{r}
+# A subsequent tutorial is devoted to data frames.
+```
+

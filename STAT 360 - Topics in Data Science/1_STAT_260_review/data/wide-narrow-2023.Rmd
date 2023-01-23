@@ -1,0 +1,145 @@
+---
+title: "Wide Versus Narrow Format"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r message=FALSE, warning=FALSE}
+# As usual, we load the mosaic and tidyverse packages.
+# Loading tidyverse automatically loads the dplyr package.
+# We want to look at two operations from dplyr: pivot_wider()
+# and pivot_longer().
+library(mosaic)
+library(tidyverse)
+```
+
+```{r}
+# Let's work with the babynames data frame from the package with the
+# same name.
+library(babynames)
+head(babynames)
+```
+```{r}
+# Let's see what the maximum value of the year variable is.
+max(babynames$year)
+```
+```{r}
+# We are interested in names that are often used for both male
+# and female babies.  I chose ten such names; I encourage you to
+# try your own favorites!
+gender_neutral_names <- c("Adrian","Blake","Charlie",
+                          "Drew","Jordan","Kyle",
+                          "Morgan","Parker","Quinn","Taylor")
+gender_neutral_names
+```
+```{r}
+# Let's filter babynames for these names and the years from
+# 2010 to 2017.  Also, we don't need the prop column, we
+# rename the sex and n columns, and change the types of the
+# year and sex columns.
+data01 <- babynames %>%
+  filter(name %in% gender_neutral_names & year > 2009) %>%
+  select(!prop) %>%
+  rename(gender = sex, count = n) %>%
+  mutate(year = as.character(year), gender = as.factor(gender))
+head(data01,20)
+```
+```{r}
+# Next, we compute, for each name and gender, the total number
+# of babies with that name and gender.
+names_by_gender <- data01 %>%
+  group_by(name,gender) %>%
+  summarize(total = sum(count))
+names_by_gender
+```
+```{r}
+# Goal: Determine which name is the most "gender neutral", in
+# that the proportion of females with that name comes closest to
+# 50%.
+#
+# The above data frame is said to be in "long" format, because there
+# is a row for each name/gender combination.
+# To accomplish our goal, we would like to get the data in
+# "wide" format - that is, we would like to have just one row for
+# each name, with columns name, F (number of females with that name),
+# and M (number of males with that name).
+```
+```{r}
+# The operation to convert a data frame from long to narrow
+# format is pivot_wider().
+names_by_gender_wide <- names_by_gender %>%
+  pivot_wider(names_from = gender, values_from = total)
+names_by_gender_wide
+```
+
+```{r}
+# To convert from wide to long format, we use the
+# pivot_longer() command.
+names_by_gender_narrow <- names_by_gender_wide %>%
+  pivot_longer(!name, names_to = "gender", values_to = "total")
+names_by_gender_narrow
+```
+```{r}
+# For more information, use:
+# vignette("pivot")
+```
+```{r}
+# Completing our task ...
+data02 <- names_by_gender_wide %>%
+  mutate(percent_F = 100*(round(F/(F + M),2)),
+         diff_from_50 = abs(percent_F - 50)) %>%
+  arrange(diff_from_50)
+data02
+```
+```{r}
+# For fun, let's produce a column graph.
+ggplot(data = data02,
+       aes(x = percent_F, y = reorder(name,diff_from_50))) +
+  geom_col(fill = "pink") +
+  labs(x = "Percentage of Female Babies with that Name",
+       y = "Name",
+       title = "How Gender Neutral Are Certain Names?")
+```
+```{r}
+# Another Example: For this example, we use the Marriage data
+# frame.
+# help("Marriage")
+head(Marriage)
+```
+```{r}
+# Note that there is a problem with the dob values!  We'll fix
+# this in the tutorial on the lubridate package. 
+# Goal: Explore the distribution of the difference in age
+# between grooms and their brides.
+# We begin by selecting the columns of interest, and arranging
+# the rows in order of bookpageID.
+marriage_data_long <- Marriage %>%
+  select(bookpageID, person, age) %>%
+  mutate(bookpageID = as.character(bookpageID)) %>%
+  arrange(bookpageID)
+head(marriage_data_long)
+```
+```{r}
+# As its name implies, the above data frame is in long format;
+# For each marriage ceremony, there are two rows, one for the
+# groom and one for the bride. In order to accomplish our goal,
+# we need to convert to wide format.
+marriage_data_wide <- marriage_data_long %>%
+  pivot_wider(names_from = person, values_from = age)
+head(marriage_data_wide)
+```
+```{r}
+# Completing our goal ...
+result <- marriage_data_wide %>%
+  mutate(diff_in_age = round(Groom - Bride,2))
+head(result)
+```
+```{r}
+ggplot(data = result,
+       aes(y = diff_in_age)) +
+  geom_boxplot() +
+  labs(y = "Groom's Age - Bride's Age")
+```
+
+

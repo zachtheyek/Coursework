@@ -1,0 +1,121 @@
+---
+title: "Two-Variable Graphs"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r message=FALSE, warning=FALSE}
+# As usual, we load the mosaic and tidyverse packages.
+library(mosaic)
+library(tidyverse)
+```
+```{r message=FALSE, warning=FALSE}
+# We make use of the run09 data frame, which is included in the
+# cherryblossom package.
+library(cherryblossom)
+head(run09)
+```
+```{r}
+# Let's see how many rows there are.
+nrow(run09)
+```
+```{r}
+# That's a lot!  Let's get a smaller data set to work with.  We'll
+# "filter" the data frame to obtain just the female runners from the
+# United States.  We'll also select just some of the columns and combine
+# some of the divisions
+cb09data <- run09 %>%
+  filter(gender == "F" & country == "USA" & div != "NA") %>%
+  select(place, time = net_time, age, state, div, div_place) %>%
+  mutate(div = ifelse(div < 11, div, 10))
+head(cb09data)
+```
+```{r}
+# Scatter Plots.
+# To produce a scatter plot, use gf_point() or ggplot() along with
+# geom_point().  Let's make a scatter plot of time vs. age for the
+# female runners.
+gf_point(time ~ age, data = cb09data)
+```
+```{r}
+# That's still a lot of points!  Let's plot a sample of size 100.
+# Also, we can add a regression line using gm_lm().
+set.seed(0122)
+gf_point(time ~ age, data = sample(cb09data,100)) %>% 
+  gf_lm(color = "blue", linetype = "dashed", size = 1)
+```
+```{r}
+# Do help("gf_point") to see what options are available.  For
+# example, there are options to control the color, size, and
+# shape of the points.
+gf_point(time ~ age, data = sample(cb09data,100),
+         color = "red", size = 2, shape = "triangle")
+```
+```{r}
+# An example using ggplot() and geom_point().  We use a sample of
+# size 200 from run09, and color the points and according to gender.
+# Also, we add a regression line for each gender.
+ggplot(data = sample(run09,200), aes(x = age, y = time)) +
+  geom_point(aes(color = gender)) +
+  geom_smooth(method = "lm", se = 0, aes(color = gender))
+```
+```{r}
+# Line Graphs.
+# Let's use gf_line() to plot a line graph of average high
+# temperature by month for Buffalo, NY.
+month <- c("01","02","03","04","05","06",
+           "07","08","09","10","11","12")
+temp <- c(31,31,41,52,63,73,79,78,70,58,48,35)
+df <- tibble(month,temp)
+gf_line(temp ~ month, data = df, group = 1)
+```
+```{r}
+# Using ggplot(), along with geom_point() and geom_line(),
+# to produce the graph below.
+# Exercise: Experiment with different colors and styles!
+ggplot(data = df, aes(x = month, y = temp)) +
+  geom_point(size = 3, color = "blue") +
+  geom_line(size = 1, color = "green", group = 1)
+```
+
+```{r}
+# Column Graphs.
+# We can produce a column graph using ggplot() and geom_col().
+# For example, let's produce a column graph showing the average
+# high temperature for each month in Buffalo.
+# First, we add a column to df with the names of the months.
+month_name = c("Jan","Feb","Mar","Apr","May","Jun",
+               "Jul","Aug","Sep","Oct","Nov","Dec")
+df2 <- df
+df2[,3] <- month_name
+names(df2)[3] <- "month_name"
+df2
+```
+```{r}
+ggplot(data = df2, aes(x = month_name, y = temp)) +
+  geom_col() +
+  labs(x = "Month", y = "Average High Temperature")
+```
+```{r}
+# How can we get the months to display in the correct order?
+# Here's one solution.
+ggplot(data = df2, aes(x = reorder(month_name,as.integer(month)),
+                       y = temp)) +
+  geom_col(fill = "blue") +
+  labs(x = "Month", y = "Average High Temperature")
+```
+```{r}
+# One can make the columns horizontal by interchanging "x" and
+# "y".
+ggplot(data = df2, aes(y = reorder(month_name,as.integer(month)),
+                       x = temp)) +
+  geom_col(fill = "blue") +
+  labs(y = "Month", x = "Average High Temperature")
+```
+```{r}
+# Exercise: Figure out how to reverse the order of the months
+# in the above plot, so that "Jan" is at the top and "Dec" is
+# at the bottom.
+```
+

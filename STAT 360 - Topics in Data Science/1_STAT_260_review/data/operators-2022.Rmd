@@ -1,0 +1,220 @@
+---
+title: "Basic Operators"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(mosaic)
+```
+```{r}
+# Arithmetic Operators:
+# addition: +
+# negation/subtraction: -
+# multiplication: *
+# division: /
+# exponentiation: ^
+#
+# These work on vectors.  Here are some examples:
+3 + 7
+```
+```{r}
+-c(2,3,5)
+```
+```{r}
+c(0,1,10)*c(2,3,5)
+```
+```{r}
+c(0,1,10)/c(2,3,5)
+```
+```{r}
+c(2,3,4)^c(3,2,1/2)
+```
+```{r}
+# Addition and negation/subtraction work on two matrices of the same
+# size.  Here's an example:
+a <- matrix(c(1,2,3,4,5,6),2,3,byrow = TRUE)
+a
+```
+```{r}
+b <- matrix(c(1,-2,4,-5,2,3),2,3,byrow = TRUE)
+b
+```
+```{r}
+a + b
+```
+```{r}
+a - b
+```
+```{r}
+-b
+```
+```{r}
+# We wonder, can we multiply a matrix by a scalar (number)?
+# Let's try it.
+3*b
+```
+```{r}
+# Yes, that works!  In fact, we can always combine any vector with
+# a vector of length 1.  For example:
+c(2,3,5)^2
+```
+```{r}
+2^c(2,3,5)
+```
+```{r}
+# Two more arithmetic operators:
+# integer division: %/% - returns the quotient
+#                   %%  - returns the remainder
+# Example:
+dividend <- 31
+divisor <- 7
+quotient <- dividend %/% divisor
+remainder <- dividend %% divisor
+c(quotient,remainder)
+```
+```{r}
+# Let's check the type of quotient and remainder.
+class(c(quotient,remainder))
+```
+```{r}
+# Exercise: Explore what happens if the dividend or the divisor are
+# not whole numbers.  For example:
+c(7 %/% 2.2, 7 %% 2.2)
+```
+```{r}
+# In some programming languages, the quotient and remainder operators
+# do not work correctly in all cases.  Techically, for integers
+# m and n with n not 0, if q = m %/% n and r = m %% n, then it should
+# be the case that m = n*q + r and 0 <= r < |n| (in words,
+# dividend = divisor times quotient plus remainder, with the remainder
+# being nonnegative and less than the absolute value of the divisor).
+# For example, if we divide -31 by 7, we should get a quotient of -5
+# and a remainder of 4,  Let's see:
+c(-31 %/% 7, -31 %% 7)
+```
+```{r}
+# Great, that works!
+# What if we divide 31 by -7?  We should get a quotient of -4 and a
+# remainder of 3.  Let's see:
+c(31 %/% -7, 31 %% -7)
+```
+```{r}
+# Aha!  Just as I feared, R computes a negative remainder.
+# Let's try dividing -31 by -7.  We should get a quotient of 5 and
+# a remainder of 4.
+c(-31 %/% -7, -31 %% -7)
+```
+```{r}
+# Again, R computes a negative remainder.
+#
+# Exercise: Write a function, integer_divide, so that
+# integer_divide(m,n) returns (as a vector) the quotient and
+# remainder when the integer m is divided by the nonzero integer n.
+#
+# Recall that, if A in an m by p matrix and B is a p by n matrix,
+# then AB (the product of A with B) is the m by n matrix defined by
+# (AB)[i,j] = the dot product of the ith row of A and the jth column
+# of B.  The operator %*% is used for matrix multiplication.
+# Example: A is a 2 by 3 matrix:
+a <- matrix(c(2,0,3,-1,4,2),2,3,byrow = TRUE)
+a
+```
+```{r}
+# B is a 3 by 2 matrix:
+b <- matrix(c(3,8,5,1,-1,2),3,2,byrow = TRUE)
+b
+```
+```{r}
+# AB is a 2 by 2 matrix:
+a %*% b
+```
+```{r}
+# BA is a 3 by 3 matrix:
+b %*% a
+```
+```{r}
+# Relational Operators:
+# less than: <
+# less than or equal to: <=
+# equal to: ==
+# greater than or equal to: >=
+# greater than: >
+# not equal to: !=
+# Each of these operators may be placed between two vectors with
+# the same length.  The result is a logical vector with that length.
+# Examples:
+5 < 7
+```
+```{r}
+c(13,17,19) == c(19,17,13)
+```
+```{r}
+# Strings are ordered as in a dictionary.
+c("BANANA","PEACH") >= c("APPLE","PEAR")
+```
+```{r}
+c(13,17,19) != c(19,17,13)
+```
+```{r}
+# Logical Operators:
+# and: &
+# or: |
+# not: !
+# Examples:
+(2 < 3) & (7 > 5)
+```
+```{r}
+(2 > 3) | (7 > 5)
+```
+```{r}
+!(2 < 3)
+```
+```{r}
+# Assignment Operators: As seen, we prefer to use <- for assignment.
+# However, = may also be used.
+# Example:
+some_primes = c(11L, 13L, 17L, 19L)
+some_primes
+```
+```{r}
+# Miscellaneous Operators:
+# The operator : is used to produce a sequence.
+# The operator %in% tests for membership.
+# Examples:
+octal_digits <- 0:7
+octal_digits
+
+```
+```{r}
+4 %in% octal_digits
+```
+```{r}
+9 %in% octal_digits
+```
+```{r}
+# We wonder what this will do.
+try_it <- 3.2:7.2
+try_it
+```
+```{r}
+another_try <- 7.2:3.2
+another_try
+```
+```{r}
+# Interesting!
+flag_colors <- c("red","white","blue")
+flag_colors
+```
+```{r}
+"green" %in% flag_colors
+```
+```{r}
+# Exercises:
+# Is there an operator for raising a square matrix to a power?
+# Is there an operator for computing the inverse of a square matrix?
+# Is there an operator for computing the transpose of a matrix?
+```
+
