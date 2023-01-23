@@ -22,5 +22,8 @@ n/a
 ### PHYS 331 - Theoretical Mechanics
 Vector-tensor approach to classical mechanics including kinematics, dynamics, oscillations, Lagrange's and Hamilton's equations, transformations, central force, and rigid body motion.
 
-### PHYS 425 - Mathematical Physics I
-Applied methods including cartesian and non-cartesian vector and tensor analysis, complex numbers and functions, linear algebra, vectors and coordinate transforms, eigenvectors and eigenvalues, infinite series, multiple integrals, Jacobians, Green's Theorem, Divergence Theorem, Stoke's Theorem and Fourier Series.
+### STAT 351 - Regression & ANOVA
+Simple linear regression and multiple regression including inference, diagnostics and transformations. One-way and multi-way analysis of variance including inference, diagnostics and transformations. Use of professional statistical software.
+
+### STAT 360 - Topics in Data Science
+A continuation of STAT 260: statistical foundations of data science; bootstrap methods; supervised learning; unsupervised learning; simulation; interactive data graphics; working with spatial data and text; working with large data sets.
