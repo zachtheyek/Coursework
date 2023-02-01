@@ -1,0 +1,36 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+Read in our data from `DistanceHome`.
+```{r}
+library(readr)
+DistanceHome <- read_csv("DistanceHome.csv", show_col_types = FALSE)
+attach(DistanceHome)
+```
+```{r message=FALSE, warning=FALSE}
+library(mosaic)
+# Count the number of M vs F in Sex
+tally(~Sex)
+```
+As we can see, there is a slight inbalance in M vs F.
+```{r}
+# Compute the mean & stdev for M vs F
+mean(Distance~Sex)
+sd(Distance~Sex)
+```
+
+```{r}
+# Visualize Distance(Sex) as a dot plot
+dotplot(Distance~Sex)
+```
+It appears that both M and F follow normal distributions. Hence, we proceed as follows.
+```{r}
+t.test(Distance~Sex)
+```
+Notice that the confidence interval contains 0, which is our null hypothesis (H_0: mean_M - mean_F = 0). Hence, we fail to reject the null. 
+```{r}
+boxplot(Distance~Sex)
+```
+
