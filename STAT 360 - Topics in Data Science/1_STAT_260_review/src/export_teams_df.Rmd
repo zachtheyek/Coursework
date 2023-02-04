@@ -1,0 +1,15 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# Load the Lahman package
+library(Lahman)
+
+# Load the Teams dataframe
+teams_df <- Teams
+
+# Export the dataframe as a csv file
+write.csv(teams_df, file = "teams_df.csv")
+```
