@@ -5,15 +5,15 @@ output: html_notebook
 Read in the data containing midterm & final scores for some sample of students.
 ```{r}
 library(readr)
-MidtermFinal <- read_csv("Documents/Coursework/STAT 351 - Regression & ANOVA/MidtermFinal.csv")
+MidtermFinal <- read_csv("MidtermFinal.csv")
 attach(MidtermFinal)
 ```
 We want to use midterm scores to predict final scores, i.e. predictor: Midterm, and response: Final. 
 
-Plot the relationship between midterm & final scores to verify any correlations.
+Plot the relationship between midterm & final scores to verify linearity. Superimpose the mean final scores as a frame of reference. 
 ```{r}
 plot(Final~Midterm)
-abline(h = mean(Final))
+abline(h=mean(Final))
 ```
 Compute the mean of the final scores.
 ```{r}
@@ -30,7 +30,34 @@ model = lm(Final~Midterm)
 summary(model)
 ```
 ```{r}
+anova(model)
+```
+We'll revisit ANOVA in more detail later on in the course, but it's interesting to see here that the model summary produces the same p-value as the ANOVA of the model.
+
+Since the p-value is so close to 0, we can assume our fit is sufficiently good. We'll visualize the fit w.r.t. the data to verify.
+```{r}
 plot(Final~Midterm)
 abline(model)
 ```
-Much better!
+Indeed, the model appears to fit the data well.
+
+Finally, we retroactively verify that the conditions for simple linear models are satisfied. We begin by plotting the residuals of the model against the fitted values.
+```{r}
+plot(model$residuals~model$fitted.values)
+abline(h=0)
+```
+Notice, the residuals are well dispersed about the zero-line, with no signs of clustering or grouping, nor any trends like fanning or tailing. This satisfies the zero mean & constant variance (a.k.a. homoscedasticity) conditions.
+
+Next, we verify the condition of normality by plotting a histogram of the residuals.
+```{r}
+hist(model$residuals)
+```
+Indeed, the residuals appear normal, thus satisfying the condition. 
+
+Note that alternatively, we could use a Normal Q-Q plot to achieve the same effect. 
+```{r}
+plot(model)
+```
+Since the residuals closely follow the dashed line, we conclude that the condition for normality is satisfied (consistent with our findings using the histogram of residuals).
+
+Notice, in the same function call, we also get the plot of residuals vs fitted!
