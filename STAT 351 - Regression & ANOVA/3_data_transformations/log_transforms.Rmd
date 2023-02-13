@@ -1,0 +1,110 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+Read in the Planets dataset.
+```{r}
+library(readr)
+Planets <- read_csv("Planets.csv")
+attach(Planets)
+Planets
+```
+```{r}
+plot(Year~Distance)
+```
+Notice, the nonlinear relationship in the scatterplot, as well as the clustering of points near x=0. Hence, in order to fit a SLM to the data, we must first transform the data accordingly. 
+
+To begin, perform a power transformation on the `Year` column.
+```{r}
+new_year = Year^(2/3)
+plot(new_year~Distance)
+```
+We notice an improvement in terms of linearity, but there are still issues relating to clustering of data points. 
+
+Next, we'll try another transformation & compare the results. Let's perform a log transform on `Year`.
+```{r}
+plot(log(Year)~Distance)
+```
+Hmm, there doesn't appear to be much improvement (if anything, the data looks worse). Let's try taking the log of `Distance` as well.
+```{r}
+plot(log(Year)~log(Distance))
+```
+Now we notice a clear improvement w.r.t. the power transform we tried initially. Specifically, the logged data appear more linear, and there are no signs of grouping of data points. 
+---
+
+Switching gears, load the SpeciesArea dataset. 
+```{r}
+library(readr)
+SpeciesArea <- read_csv("SpeciesArea.csv")
+attach(SpeciesArea)
+SpeciesArea
+```
+```{r}
+plot(Species~Area)
+```
+Notice, again, the same issues of nonlinear data + grouping near x=0.
+
+Let's try the same thing that worked before: performing a log transform on both columns.
+```{r}
+log_species = log(Species)
+log_area = log(Area)
+plot(log_species~log_area)
+
+# Fit linear regression to data
+model_1 = lm(log_species~log_area)
+abline(model_1)
+```
+Indeed, like the first example, the data appear more linear & better dispersed. 
+
+The linear fit also seems pretty good -> let's print the equation of the fit.
+```{r}
+summary(model_1)
+```
+In other words, the fit is expressed as 
+  \hat{y} = 1.6249 + 0.2355 * \hat{x}
+where y is the log(Species), and x is the log(Area).
+
+Doing an inverse transform to undo the log transforms: 
+  e^{\hat{y}} = e^{1.6249 + 0.2355 * \hat{x}}. 
+
+This yields the equation: 
+  species = 5.08 * area^{0.2355}.
+
+Thus, we've just managed to fit a linear model to nonlinear data using data transformations!
+---
+
+Next, load the LongJump dataset.
+```{r}
+library(readr)
+LongJump <- read_csv("LongJumpOlympics2016.csv")
+attach(LongJump)
+LongJump
+```
+```{r}
+plot(Gold~Year)
+model_2 = lm(Gold~Year)
+abline(model_2)
+```
+Notice, a linear regression fits the data pretty well, without the need for any transformations. 
+
+Checking for unusual points, let's examine the model residuals using a boxplot.
+```{r}
+boxplot(model_2$residuals)
+```
+Notice the singular outlier that's present in the above plot. 
+
+Alternatively, we could also plot the standardized residuals of the model against the fitted values to achieve the same affect. 
+```{r}
+plot(rstandard(model_2)~model_2$fitted.values)
+abline(0, 0)
+```
+Notice, the point furthest from the zero-line corresponds to 2.96 stdevs from the mean. Hence, we can safely conclude it's an outlier (consistent with what we observed in the boxplot).
+
+Checking for influential points next, we plot the studentized residuals against the fitted values. 
+```{r}
+plot(rstudent(model_2)~model_2$fitted.values)
+abline(0, 0)
+```
+Notice, the outlier we observed previously is 3.57 stdevs from the mean (0). Hence, we conclude that it's also an influential point. 
+
+Note, both plots look largely the same, since there was only 1 outlier (recall the studentized residuals are obtained by fitting the model to the data, but excluding the outliers). For datasets with more outliers, the studentized plot would look much different, since the stdev of the residuals would be lowered significantly.
