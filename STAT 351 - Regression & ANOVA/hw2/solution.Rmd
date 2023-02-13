@@ -1,0 +1,35 @@
+---
+output: 
+  word_document: default
+---
+Read in the data.
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+attach(data)
+data
+```
+1. Let x = resting pulse, y = active pulse.
+```{r}
+plot(ActivePulse~RestingPulse)
+model = lm(ActivePulse~RestingPulse)
+abline(model)
+```
+2. Equation: ActivePulse = 79.0217 + RestingPulse * 0.4793
+```{r}
+summary(model)
+```
+3. Resting pulse: 71
+
+4. Active Pulse: 92
+
+5. From model, predicted ActivePulse = 79.0217 + 71 * 0.4793 = 113
+
+6. Computing the residuals of our data
+```{r}
+model$residuals
+```
+```{r}
+hist(model$residuals)
+```
+7. No, because a resting pulse of 100 BPM is outside the range of our model's training data (i.e. we would need to perform extrapolation).
