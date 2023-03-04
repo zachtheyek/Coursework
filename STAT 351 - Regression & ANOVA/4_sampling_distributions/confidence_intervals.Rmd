@@ -1,0 +1,87 @@
+Read in the data.
+```{r}
+library(readr)
+MidtermFinal <- read_csv("MidtermFinal.csv")
+attach(MidtermFinal)
+```
+Next, fit a linear model to the midterm & final scores, and compute the summary statistics of the model.
+```{r}
+model = lm(Final~Midterm)
+summary(model)
+```
+Notice that we have 29 degrees of freedom, as well as estimates for the coefficient values & corresponding standard errors. 
+
+Focusing on the slope (\hat{beta_1}), to calculate the confidence interval by hand, we need the t-value for the desired level of confidence. Assuming a confidence of 95%,
+```{r}
+qt(0.975, 29)
+```
+The t-value in question is 2.04523.
+
+Plugging this into our formula for confidence intervals, and using the slope (beta_1) value as our parameter of interest:
+CI = estimated slope +/- t-value * standard error 
+CI = 1.4925 +/- 1.699127 * 0.2413
+CI = [0.9990, 1.9860]
+
+Verifying our results:
+```{r}
+confint(model)
+```
+Indeed, both intervals are consistent with each other. In other words, we are 95% confident the (population) relationship between midterm & final grades (beta_1) is between 0.9990 & 1.9860.
+
+Note that if we instead wanted to calculate a wider confidence interval (e.g. 90%), we could do so as follows:
+```{r}
+qt(0.95, 29)
+```
+CI = estimated slope +/- t-value * standard error 
+CI = 1.4925 +/- 1.699127 * 0.2413
+CI = [1.0825, 1.9025]
+```{r}
+confint(model, level=0.9)
+```
+We find that a 90% confidence interval is given by [1.0825, 1.9025], which is, again, consistent with our results by-hand. 
+
+Notice, both intervals do not overlap with 0, indicating that there is most likely a relationship between midterm & final grades (i.e. beta_1 != 0). Hence, we would reject the null (H_0: beta_1 = 0) in favor of the alternative (H_a: beta_1 != 0).
+
+Another way of coming to the same conclusion (i.e. not using confidence intervals) is to calculate the probability (p-value) of obtaining a test statistic as or more extreme than the one we calculated (for \hat{beta_1}, we had a t-value of 6.186). We do so by computing the area under the t-distribution (with the specified degrees of freedom; 29 in this case) for t >= 6.186. 
+
+Note: a t-value of 6.186 indicates that our beta_1 value is 6.186 standard errors from the (null) hypothesized mean of beta_1 = 0. 
+```{r}
+pt(6.186, 29, lower.tail = FALSE)
+```
+At a p-value of roughly 0, we can confidently reject the null in favor of the alternative. This is consistent with our findings from the confidence interval method!
+
+Running through another example of hypothesis testing, let's now read in a separate dataset.
+```{r}
+SpeciesArea <- read_csv("SpeciesArea.csv")
+attach(SpeciesArea)
+```
+Let x=Area, and y=Species. Our hypotheses are as follows:
+  H_0: there is no relationship between species and area (beta_1 = 0)
+  H_a: there is a relationship between species and area (beta_1 != 0)
+
+Visualizing the data,
+```{r}
+plot(Species~Area)
+```
+Notice that the data appear clustered & nonlinear. Hence, we perform a log transform on both variables.
+```{r}
+plot(log(Species)~log(Area))
+```
+Now that the data appear much better, we fit a linear model to the transformed data, and print a summary of the model.
+```{r}
+model = lm(log(Species)~log(Area))
+plot(log(Species)~log(Area))
+abline(model)
+```
+```{r}
+summary(model)
+```
+Notice for \hat{beta_1}, with a t-value of 13.46, which corresponds to a p-value of roughly 0, we can safely reject the null in favor of the alternative. 
+
+It remains to perform sanity checks to verify that the remaining conditions for SLM are met.
+```{r}
+plot(model)
+```
+Notice from the plot of the model's residuals vs fitted values: the residuals are well dispersed about the zero-line, with no signs of clustering or grouping, nor any trends like fanning or tailing. Hence, we determine that the conditions of zero-mean & constant variance are indeed satisfied. 
+
+Further, from the Normal Q-Q plot, since the standardized residuals closely follow the dashed line, we conclude that the condition for normality is also met. 
