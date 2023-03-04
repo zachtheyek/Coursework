@@ -1,0 +1,22 @@
+---
+title: "solution"
+output: word_document
+---
+Begin by reading in the data.
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+attach(data)
+```
+Let x = NumMDs, y = NumBeds. Fit a linear model to the logged data (see hw4) and print the model summary.
+```{r}
+model = lm(log(NumBeds)~log(NumMDs))
+summary(model)
+```
+Let H_0: beta_1 = 0 (there is no relationship between the number of medical doctors and the number of hospital beds), and H_a: beta_1 != 0 (there is a relationship between the number of medical doctors and the number of hospital beds). 
+
+From the model summary, we obtain a test statistic of t=26.367, with 81 degrees of freedom. This corresponds to a p-value of <2.2e-16, i.e. approximately 0. 
+
+At a significance level of alpha=0.05, we conclude that there is sufficient evidence to reject the null in favor of the alternative, and conclude that there is indeed a relationship between the number of medical doctors and the number of hospital beds. Note, though, that this relationship is nonlinear, due to the model being fit to the logged data:
+    log(y) = beta_0 + beta_1 * log(x)
+    y = e^{beta_0} * x^{beta_1}
