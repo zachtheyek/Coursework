@@ -1,0 +1,35 @@
+Read in the data.
+```{r}
+library(readr)
+MidtermFinal <- read_csv("MidtermFinal.csv")
+attach(MidtermFinal)
+```
+Let x=Midterm, y=Final. 
+
+Fit a linear model to the data, and print a summary of the model.
+```{r}
+model = lm(Final~Midterm)
+summary(model)
+```
+Notice, we have an F-statistic of 38.26, which implies that the variation explained by the model is significantly greater than the variation due to chance. This is consistent with our p-value of approximately 0.
+
+Moreover, we have an R-squared value of 0.5689, indicating that 56.89% of the variability in y (final grades) is explained by the linear relationship with x (midterm grades). Naturally, 43.11% of the variation can be explained by other factors (e.g. time spent studying, courseload, major, etc.).
+
+Note that we can obtain the same information by computing the ANOVA table for the model, which reports the (1) degrees of freedom, (2) SSE, and (3) MSE for both the model & the residuals, as well as the F-value & corresponding p-value for the model. 
+```{r}
+anova(model)
+```
+
+Performing a hypothesis test on the correlation coefficient, let H_0: rho = 0, and H_a: rho != 0, where rho denotes the population correlation coefficient. 
+
+If we're doing this by hand, we would first need to compute the correlation coefficient r between explanatory & response.
+```{r}
+cor(Final, Midterm)
+```
+Then, we'd need to calculate the corresponding t-value, and use the t-distribution with 29 degrees of freedom to determine if we have enough evidence to reject the null in favor of the alternative. 
+
+However, in R, we can do all of this in one go using the following command. 
+```{r}
+cor.test(Final, Midterm)
+```
+Notice, at a t-value of 6.1857, we can safely conclude that the true correlation is not 0, according to both our p-value & 95% CI. 
