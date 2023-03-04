@@ -1,0 +1,58 @@
+---
+title: "solution"
+output: word_document
+---
+Begin by reading in the data.
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+attach(data)
+data
+```
+Next, let x=NumMDs, y=NumBeds. Visualize the relationship between the 2 variables using a scatterplot. 
+```{r}
+plot(NumBeds~NumMDs)
+```
+Notice that there appears to be some clustering near the origin, as well as some "fanning" at larger x-values. 
+
+Since the scatterplot does not satisfy the conditions for linearity, we must perform transformations on one (or both) of the variables to get a better linear model.  
+
+We start by attempting a square-root transformation on both variables. 
+```{r}
+plot(sqrt(NumBeds)~sqrt(NumMDs))
+```
+Notice that the data appear much better than before, though there are still signs of clustering near the origin. 
+
+Let's compare our results using a log transform on both variables. 
+```{r}
+plot(log(NumBeds)~log(NumMDs))
+```
+Indeed, not only do the data appear more linear, but they also seem to be more well-dispersed. Thus, we gather that using log transforms on both variables should suffice!
+
+To be sure, let's fit a linear model & verify that the conditions for linearity are met. Specifically, 
+1. Zero-mean
+2. Homoscedasticity
+3. Independence
+4. Normality
+```{r}
+plot(log(NumBeds)~log(NumMDs))
+model = lm(log(NumBeds)~log(NumMDs))
+abline(model)
+```
+We can plot a histogram of the model residuals to verify normality. 
+```{r}
+hist(model$residuals)
+```
+Indeed, the residuals appear fairly normal, with the exception of an outlier or two. Hence, we conclude that the condition for normality are met. 
+
+Then, we check the conditions of zero-mean & constant variance by plotting the model residuals against the model’s fitted values. 
+```{r}
+plot(model)
+```
+Notice, the residuals are well dispersed about the zero-line, with no signs of clustering or grouping, nor any trends like fanning or tailing. Hence, we determine that the 2 conditions are indeed satisfied. 
+
+Finally, we verify independence using the model's p-value. 
+```{r}
+summary(model)
+```
+At a p-value: < 2.2e-16, we can be confident the transformed variables are independent, thus concluding that all 4 conditions are satisfied!
