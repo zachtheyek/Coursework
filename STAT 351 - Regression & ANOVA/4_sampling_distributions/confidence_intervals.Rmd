@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
 Read in the data.
 ```{r}
 library(readr)
@@ -11,7 +17,7 @@ summary(model)
 ```
 Notice that we have 29 degrees of freedom, as well as estimates for the coefficient values & corresponding standard errors. 
 
-Focusing on the slope (\hat{beta_1}), to calculate the confidence interval by hand, we need the t-value for the desired level of confidence. Assuming a confidence of 95%,
+Focusing on the slope ($\hat{\beta_1}$), to calculate the confidence interval by hand, we need the t-value for the desired level of confidence. Assuming a confidence of 95%,
 ```{r}
 qt(0.975, 29)
 ```
@@ -42,7 +48,7 @@ We find that a 90% confidence interval is given by [1.0825, 1.9025], which is, a
 
 Notice, both intervals do not overlap with 0, indicating that there is most likely a relationship between midterm & final grades (i.e. beta_1 != 0). Hence, we would reject the null (H_0: beta_1 = 0) in favor of the alternative (H_a: beta_1 != 0).
 
-Another way of coming to the same conclusion (i.e. not using confidence intervals) is to calculate the probability (p-value) of obtaining a test statistic as or more extreme than the one we calculated (for \hat{beta_1}, we had a t-value of 6.186). We do so by computing the area under the t-distribution (with the specified degrees of freedom; 29 in this case) for t >= 6.186. 
+Another way of coming to the same conclusion (i.e. not using confidence intervals) is to calculate the probability (p-value) of obtaining a test statistic as or more extreme than the one we calculated (for $\hat{\beta_1}$, we had a t-value of 6.186). We do so by computing the area under the t-distribution (with the specified degrees of freedom; 29 in this case) for t >= 6.186. 
 
 Note: a t-value of 6.186 indicates that our beta_1 value is 6.186 standard errors from the (null) hypothesized mean of beta_1 = 0. 
 ```{r}
@@ -76,7 +82,7 @@ abline(model)
 ```{r}
 summary(model)
 ```
-Notice for \hat{beta_1}, with a t-value of 13.46, which corresponds to a p-value of roughly 0, we can safely reject the null in favor of the alternative. 
+Notice for $\hat{\beta_1}$, with a t-value of 13.46, which corresponds to a p-value of roughly 0, we can safely reject the null in favor of the alternative. 
 
 It remains to perform sanity checks to verify that the remaining conditions for SLM are met.
 ```{r}

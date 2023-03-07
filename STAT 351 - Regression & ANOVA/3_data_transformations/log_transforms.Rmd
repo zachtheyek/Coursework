@@ -1,6 +1,7 @@
 ---
-title: "R Notebook"
-output: html_notebook
+output:
+  pdf_document: default
+  html_document: default
 ---
 Read in the Planets dataset.
 ```{r}
@@ -61,11 +62,11 @@ The linear fit also seems pretty good -> let's print the equation of the fit.
 summary(model_1)
 ```
 In other words, the fit is expressed as 
-  \hat{y} = 1.6249 + 0.2355 * \hat{x}
+  $\hat{y} = 1.6249 + 0.2355 * \hat{x}$
 where y is the log(Species), and x is the log(Area).
 
 Doing an inverse transform to undo the log transforms: 
-  e^{\hat{y}} = e^{1.6249 + 0.2355 * \hat{x}}. 
+  $e^{\hat{y}} = e^{1.6249 + 0.2355 * \hat{x}}$
 
 This yields the equation: 
   species = 5.08 * area^{0.2355}.

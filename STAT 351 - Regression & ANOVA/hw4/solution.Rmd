@@ -1,6 +1,8 @@
 ---
 title: "solution"
-output: word_document
+output:
+  pdf_document: default
+  word_document: default
 ---
 Begin by reading in the data.
 ```{r}

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Read in the data.
 ```{r}
 library(readr)
@@ -33,3 +38,13 @@ However, in R, we can do all of this in one go using the following command.
 cor.test(Final, Midterm)
 ```
 Notice, at a t-value of 6.1857, we can safely conclude that the true correlation is not 0, according to both our p-value & 95% CI. 
+
+Finally, we can compute a correlation matrix, i.e. the pairwise correlation coefficients between a list of variables, as follows:
+```{r}
+BaseballTimes2017 <- read_csv("BaseballTimes2017.csv")
+attach(BaseballTimes2017)
+head(BaseballTimes2017)
+```
+```{r}
+cor(BaseballTimes2017[3:7])
+```
