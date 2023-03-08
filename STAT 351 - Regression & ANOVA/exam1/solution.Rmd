@@ -1,0 +1,47 @@
+```{r}
+library(readr)
+LeafWidth <- read_csv("LeafWidth.csv")
+attach(LeafWidth)
+```
+```{r}
+head(LeafWidth)
+```
+```{r}
+plot(Width~Year)
+model = lm(Width~Year)
+abline(model)
+```
+```{r}
+cor(Width, Year)
+```
+```{r}
+cor.test(Width, Year)
+```
+```{r}
+summary(model)
+```
+```{r}
+anova(model)
+```
+```{r}
+Caterpillar <- read_csv("Caterpillar.csv")
+attach(Caterpillar)
+head(Caterpillar)
+```
+```{r}
+plot(Mass~Intake)
+```
+```{r}
+model = lm(Mass~Intake)
+plot(model)
+```
+```{r}
+plot(log(Mass)~log(Intake))
+```
+```{r}
+model = lm(log(Mass)~log(Intake))
+plot(model)
+```
+```{r}
+summary(model)
+```
