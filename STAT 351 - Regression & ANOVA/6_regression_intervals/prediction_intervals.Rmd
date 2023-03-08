@@ -1,0 +1,26 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+Read in the data.
+```{r}
+library(readr)
+MidtermFinal <- read_csv("MidtermFinal.csv")
+attach(MidtermFinal)
+```
+From the data, we fit a linear model, where x=midterm grades, and y=final grades. 
+
+Then, select a random x-value to be our critical x-value, and calculate the CI for the mean of the response (mu_y) given that critical value.
+```{r}
+model = lm(Final~Midterm)
+x = data.frame(Midterm = 41)
+predict.lm(model, x, interval = "confidence")
+```
+Notice that our point estimate is located at 79.8646, with an interval of $\mu_y \in (76.02267, 83.70652)$.
+
+We can do the same for the predicted y ($\hat{y}$) given the same critical value, using a prediction interval. 
+```{r}
+predict.lm(model, x, interval = "prediction")
+```
+Indeed, we find that we have an interval of $\hat{y} \in (59.75512, 99.97408)$, with a point estimate of 79.8646.
