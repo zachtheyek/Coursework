@@ -1,0 +1,10 @@
+```{r}
+# Load the Lahman package
+library(mosaicData)
+
+# Load the Teams dataframe
+Gestation_df <- Gestation
+
+# Export the dataframe as a csv file
+write.csv(Gestation_df, file = "gestation_df.csv")
+```
