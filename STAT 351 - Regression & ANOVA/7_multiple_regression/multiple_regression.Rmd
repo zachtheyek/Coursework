@@ -1,0 +1,59 @@
+Start by reading in the data.
+```{r}
+library(readr)
+Pulse <- read_csv("Pulse.csv")
+attach(Pulse)
+head(Pulse)
+```
+Here, we have information regarding a person's active and resting heart rates, their height, weight, and sex, as well as their smoking and exercise habits. To demonstrate the concepts of multiple regression, let's start by fitting a multiple regression model to rest, height, and sex as predictors for active.
+```{r}
+model_0 = lm(Active~Rest+Hgt+Sex)
+summary(model_0)
+```
+We notice a few things:
+- An overall p-value of approximately 0 indicates that rest, height, and sex do a good job collectively of predicting active heart rate
+- An adjusted R-squared of 0.3641 shows that the multiple regression model explains 36.41% of the variance in the data
+- The individual p-values tell us that rest is a crucial predictor for active heart rate; sex is not that good of a predictor; height doesn't contribute much to the model's predictions
+
+Thus, one might conclude the following: resting heart rate, height, and sex do a good job of predicting active heart rate, though it suffices to only use resting heart rate as a predictor (recall that a simple linear regression with x=rest and y=active yields an R-squared of 0.365).
+
+To visualize how the data are mutually correlated, we can visualize them using a matrix.
+```{r}
+plot(Pulse[c(1, 2, 4, 6)])
+```
+Here we find that active and rest are highly correlated, whereas active and height are not that correlated; it's hard to draw conclusions from sex since it's a binary variable. 
+
+Let's compute a correlation matrix to see if our insights are correct,
+```{r}
+cor(Pulse[c(1, 2, 4, 6)])
+```
+Indeed, our conclusions are supported by the correlation matrix. Note that while sex and height seem to be highly correlated here (which is consistent with real-world expectations), we shouldn't read into this too much, since, again, sex is a binary variable. 
+
+Finally, let's print an ANOVA table for our model. 
+```{r}
+anova(model_0)
+```
+Again, we see that rest is a very good predictor for active, as indicated by the high F-value and low corresponding p-value. Height and sex are less so, with a low F-value and correspondingly high p-values. In other words, the takeaway of using only rest as a predictor for active is supported by evidence. 
+
+Finally, since we have other features in the dataframe, let's explore fitting multiple regression models to various feature combinations as predictors. Note that we'll include resting heart rate in each, since we know it's a very good predictor as is. 
+```{r}
+model_1 = lm(Active~Rest+Sex)
+summary(model_1)
+```
+```{r}
+model_2 = lm(Active~Rest+Hgt)
+summary(model_2)
+```
+```{r}
+model_3 = lm(Active~Rest+Exercise)
+summary(model_3)
+```
+```{r}
+model_4 = lm(Active~Rest+Wgt)
+summary(model_4)
+```
+```{r}
+model_5 = lm(Active~Rest+Smoke)
+summary(model_5)
+```
+As we can see, none of the other features do a good job at predicting active heart rate. Hence, we can conclude that it suffices to use resting heart rate as the sole predictor to active heart rate. 
