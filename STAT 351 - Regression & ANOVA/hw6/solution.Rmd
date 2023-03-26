@@ -1,0 +1,33 @@
+---
+title: "solution"
+output: word_document
+---
+Read in the data.
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+attach(data)
+head(data)
+```
+Next, fit a multiple regression model with GPA as the response, and high school GPA, SAT verbal scores, SAT math scores, and sex (male or female) as predictors. 
+```{r}
+model = lm(GPA ~ HSGPA + SATV + SATM + Male)
+summary(model)
+```
+We find that the multiple regression model does a good job overall of predicting GPA, with a p-value of ~0 and an adjusted R-squared of 0.2353. However, the individual p-values imply that only high school GPA and SAT verbal scores are necessary to obtain a good prediction. Let's visualize these features using scatterplots and a correlation matrix to support our argument. 
+```{r}
+plot(data[c(1, 2, 3, 4, 5)])
+```
+```{r}
+cor(data[c(1, 2, 3, 4, 5)])
+```
+Indeed, we see that high school GPA and SAT verbal scores are well correlated with GPA, whereas SAT math scores and sex have little to no correlation. 
+```{r}
+anova(model)
+```
+Additionally, an ANOVA table of our multiple regression model supports this claim, since `SATM` and `Male` both received very low F-values (and correspondingly high p-values). Thus, we conclude that a better model would suffice to only use high school GPA and SAT verbal scores as predictors. 
+```{r}
+improved_model = lm(GPA ~ HSGPA + SATV)
+summary(improved_model)
+```
+In conclusion, we can safely conclude that there is enough evidence to reject the null (H_0: beta_i = 0) in favor of the alternative (H_a: beta_i != 0). In addition, with an improved p-value, adjusted R-squared, and F-statistic, we can also say that high school GPA and SAT verbal scores are sufficiently good predictors for college GPA. 
