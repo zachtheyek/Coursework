@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_949c071d277c685cc31c59a1f1fbea78 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_949c071d277c685cc31c59a1f1fbea78" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_949c071d277c685cc31c59a1f1fbea78 = L.map(
+                "map_949c071d277c685cc31c59a1f1fbea78",
+                {
+                    center: [8.7832, 34.5085],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 3,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d0e01883484de2ecc3fc88aca35c2328 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            var marker_ef00c5738327ddd69a5ddf91b47050ef = L.marker(
+                [-12.5, 18.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_ef00c5738327ddd69a5ddf91b47050ef.bindTooltip(
+                `<div>
+                     Country: Angola, Capital: Luanda
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_32fc116e3892ee1c4068d5eafa9dca8f = L.marker(
+                [-21.15, 55.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_32fc116e3892ee1c4068d5eafa9dca8f.bindTooltip(
+                `<div>
+                     Country: Réunion, Capital: Saint-Denis
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4690c885fffea0d8ef7336fac359ce2d = L.marker(
+                [7.0, 21.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_4690c885fffea0d8ef7336fac359ce2d.bindTooltip(
+                `<div>
+                     Country: Central African Republic, Capital: Bangui
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4a2024f8fef0e429827e9bc8daec982c = L.marker(
+                [-22.0, 17.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_4a2024f8fef0e429827e9bc8daec982c.bindTooltip(
+                `<div>
+                     Country: Namibia, Capital: Windhoek
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ecfe209edf2fa6865362dbfb50e9e130 = L.marker(
+                [-20.0, 47.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_ecfe209edf2fa6865362dbfb50e9e130.bindTooltip(
+                `<div>
+                     Country: Madagascar, Capital: Antananarivo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_333bb2578f21c183b878e4cdbc5a711d = L.marker(
+                [-29.0, 24.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_333bb2578f21c183b878e4cdbc5a711d.bindTooltip(
+                `<div>
+                     Country: South Africa, Capital: Pretoria
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36bb6f265cf36d5b64bcacfdecf257c2 = L.marker(
+                [11.0, -10.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_36bb6f265cf36d5b64bcacfdecf257c2.bindTooltip(
+                `<div>
+                     Country: Guinea, Capital: Conakry
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b45282c896a233bd8894dcefdb163a31 = L.marker(
+                [34.0, 9.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_b45282c896a233bd8894dcefdb163a31.bindTooltip(
+                `<div>
+                     Country: Tunisia, Capital: Tunis
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a22610dfeb164cd682a524473c4de8cc = L.marker(
+                [-2.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_a22610dfeb164cd682a524473c4de8cc.bindTooltip(
+                `<div>
+                     Country: Rwanda, Capital: Kigali
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_83d7a3bf81b3c2261381f8fbe9f5ff1c = L.marker(
+                [-20.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_83d7a3bf81b3c2261381f8fbe9f5ff1c.bindTooltip(
+                `<div>
+                     Country: Zimbabwe, Capital: Harare
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d4af37c8c274b7b61921d3e778c1a939 = L.marker(
+                [15.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_d4af37c8c274b7b61921d3e778c1a939.bindTooltip(
+                `<div>
+                     Country: Sudan, Capital: Khartoum
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ef0a930ed1b1a9a27a37dccc59a92c58 = L.marker(
+                [-12.83333333, 45.16666666],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_ef0a930ed1b1a9a27a37dccc59a92c58.bindTooltip(
+                `<div>
+                     Country: Mayotte, Capital: Mamoudzou
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a643e2e945ab7c82e5e8ea40aad49bdb = L.marker(
+                [-1.0, 11.75],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_a643e2e945ab7c82e5e8ea40aad49bdb.bindTooltip(
+                `<div>
+                     Country: Gabon, Capital: Libreville
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a3273b19000d4c67a5d9a684a98e32c1 = L.marker(
+                [-3.5, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_a3273b19000d4c67a5d9a684a98e32c1.bindTooltip(
+                `<div>
+                     Country: Burundi, Capital: Gitega
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5b78469a52bf5518710c6c6a707aa57d = L.marker(
+                [-29.5, 28.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_5b78469a52bf5518710c6c6a707aa57d.bindTooltip(
+                `<div>
+                     Country: Lesotho, Capital: Maseru
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4839b9e1cdef51faf6c0eaca2e91045f = L.marker(
+                [16.0, 8.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_4839b9e1cdef51faf6c0eaca2e91045f.bindTooltip(
+                `<div>
+                     Country: Niger, Capital: Niamey
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4250fc1bf33baf224341be6a0e4b46fa = L.marker(
+                [14.0, -14.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_4250fc1bf33baf224341be6a0e4b46fa.bindTooltip(
+                `<div>
+                     Country: Senegal, Capital: Dakar
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_954ae77f39a6ba69bac13889a0d53495 = L.marker(
+                [13.46666666, -16.56666666],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_954ae77f39a6ba69bac13889a0d53495.bindTooltip(
+                `<div>
+                     Country: Gambia, Capital: Banjul
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f9ea89c6291cd45e1000739914d504ec = L.marker(
+                [10.0, 49.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_f9ea89c6291cd45e1000739914d504ec.bindTooltip(
+                `<div>
+                     Country: Somalia, Capital: Mogadishu
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1e2bb7b9f9c10d4c9cc93858f7c77e69 = L.marker(
+                [27.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_1e2bb7b9f9c10d4c9cc93858f7c77e69.bindTooltip(
+                `<div>
+                     Country: Egypt, Capital: Cairo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_944ee768a437a75cc79209b7934b99d6 = L.marker(
+                [6.5, -9.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_944ee768a437a75cc79209b7934b99d6.bindTooltip(
+                `<div>
+                     Country: Liberia, Capital: Monrovia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_11b1898513abab6828ab099c5b90398b = L.marker(
+                [2.0, 10.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_11b1898513abab6828ab099c5b90398b.bindTooltip(
+                `<div>
+                     Country: Equatorial Guinea, Capital: Malabo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7cf0e53509b00fbfbbaf9f30684ce207 = L.marker(
+                [-6.0, 35.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_7cf0e53509b00fbfbbaf9f30684ce207.bindTooltip(
+                `<div>
+                     Country: Tanzania, Capital: Dodoma
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_23e6afaf16d2437a2fe6e66ce1eb4b0c = L.marker(
+                [-12.16666666, 44.25],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_23e6afaf16d2437a2fe6e66ce1eb4b0c.bindTooltip(
+                `<div>
+                     Country: Comoros, Capital: Moroni
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d27fd9edf00ae05f1ce9c219abdabdd2 = L.marker(
+                [25.0, 17.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_d27fd9edf00ae05f1ce9c219abdabdd2.bindTooltip(
+                `<div>
+                     Country: Libya, Capital: Tripoli
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_81a3196bf38c8512887de95414370923 = L.marker(
+                [-18.25, 35.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_81a3196bf38c8512887de95414370923.bindTooltip(
+                `<div>
+                     Country: Mozambique, Capital: Maputo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9f813e2bb5c4b2a37c937bbe89c0f8c8 = L.marker(
+                [-1.0, 15.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_9f813e2bb5c4b2a37c937bbe89c0f8c8.bindTooltip(
+                `<div>
+                     Country: Republic of the Congo, Capital: Brazzaville
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_14e8bffba24514d94045676b2a406868 = L.marker(
+                [8.5, -11.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_14e8bffba24514d94045676b2a406868.bindTooltip(
+                `<div>
+                     Country: Sierra Leone, Capital: Freetown
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cc218984b10a56edc99e74795433c9da = L.marker(
+                [15.0, 39.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_cc218984b10a56edc99e74795433c9da.bindTooltip(
+                `<div>
+                     Country: Eritrea, Capital: Asmara
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_23aa60735fddb2e77eb5e1435759317a = L.marker(
+                [8.0, 1.16666666],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_23aa60735fddb2e77eb5e1435759317a.bindTooltip(
+                `<div>
+                     Country: Togo, Capital: Lomé
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_81f72d77a75b59074db1fbd40d8ec8e1 = L.marker(
+                [1.0, 7.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_81f72d77a75b59074db1fbd40d8ec8e1.bindTooltip(
+                `<div>
+                     Country: São Tomé and Príncipe, Capital: São Tomé
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_954be957199a65a81c9c8b3abd5fa35b = L.marker(
+                [20.0, -12.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_954be957199a65a81c9c8b3abd5fa35b.bindTooltip(
+                `<div>
+                     Country: Mauritania, Capital: Nouakchott
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cf3c9e077ad58714e5b76c79d8226fc5 = L.marker(
+                [8.0, -2.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_cf3c9e077ad58714e5b76c79d8226fc5.bindTooltip(
+                `<div>
+                     Country: Ghana, Capital: Accra
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d91e39ef735860bdddd0bed7f3c5560d = L.marker(
+                [7.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_d91e39ef735860bdddd0bed7f3c5560d.bindTooltip(
+                `<div>
+                     Country: South Sudan, Capital: Juba
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a66445f764a69ff9b7ddb06b8b5087dd = L.marker(
+                [24.5, -13.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_a66445f764a69ff9b7ddb06b8b5087dd.bindTooltip(
+                `<div>
+                     Country: Western Sahara, Capital: El Aaiún
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d9532bb40bbd8af295909598fa8f2cf9 = L.marker(
+                [13.0, -2.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_d9532bb40bbd8af295909598fa8f2cf9.bindTooltip(
+                `<div>
+                     Country: Burkina Faso, Capital: Ouagadougou
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4dfe0302d109bb2c91e0940cc14171ef = L.marker(
+                [0.0, 25.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_4dfe0302d109bb2c91e0940cc14171ef.bindTooltip(
+                `<div>
+                     Country: DR Congo, Capital: Kinshasa
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f17674eeabbd1bf2e12dbf7b25f6125b = L.marker(
+                [-13.5, 34.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_f17674eeabbd1bf2e12dbf7b25f6125b.bindTooltip(
+                `<div>
+                     Country: Malawi, Capital: Lilongwe
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2b9fd8847165f079aa08a92b90826967 = L.marker(
+                [-15.0, 30.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_2b9fd8847165f079aa08a92b90826967.bindTooltip(
+                `<div>
+                     Country: Zambia, Capital: Lusaka
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a18fb120c324f6918e1513f3f81dabf6 = L.marker(
+                [9.5, 2.25],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_a18fb120c324f6918e1513f3f81dabf6.bindTooltip(
+                `<div>
+                     Country: Benin, Capital: Porto-Novo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cf49868f08451a134de0a28a46402ca2 = L.marker(
+                [1.0, 32.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_cf49868f08451a134de0a28a46402ca2.bindTooltip(
+                `<div>
+                     Country: Uganda, Capital: Kampala
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c315090d1df49b07c100beb58c69eacb = L.marker(
+                [12.0, -15.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_c315090d1df49b07c100beb58c69eacb.bindTooltip(
+                `<div>
+                     Country: Guinea-Bissau, Capital: Bissau
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_57a3f4215951f155d1ff5fe4de4d6cbb = L.marker(
+                [28.0, 3.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_57a3f4215951f155d1ff5fe4de4d6cbb.bindTooltip(
+                `<div>
+                     Country: Algeria, Capital: Algiers
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_66b6b718d7a60622bdc5c8702a63470f = L.marker(
+                [-26.5, 31.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_66b6b718d7a60622bdc5c8702a63470f.bindTooltip(
+                `<div>
+                     Country: Eswatini, Capital: Mbabane
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_38a0f33ae7b1546baafb9e3524e41972 = L.marker(
+                [1.0, 38.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_38a0f33ae7b1546baafb9e3524e41972.bindTooltip(
+                `<div>
+                     Country: Kenya, Capital: Nairobi
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b108c776e581470b8c6c1578a94799c2 = L.marker(
+                [8.0, 38.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_b108c776e581470b8c6c1578a94799c2.bindTooltip(
+                `<div>
+                     Country: Ethiopia, Capital: Addis Ababa
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3ae016c7f7246da78b43fb164efffb0a = L.marker(
+                [16.5388, 23.0418],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_3ae016c7f7246da78b43fb164efffb0a.bindTooltip(
+                `<div>
+                     Country: Cape Verde, Capital: Praia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e0af8cfaa9351d22d23b30b9c3dfff9f = L.marker(
+                [17.0, -4.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_e0af8cfaa9351d22d23b30b9c3dfff9f.bindTooltip(
+                `<div>
+                     Country: Mali, Capital: Bamako
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_93d3295ad6091d36491faabfb4914bdc = L.marker(
+                [15.0, 19.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_93d3295ad6091d36491faabfb4914bdc.bindTooltip(
+                `<div>
+                     Country: Chad, Capital: N'Djamena
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_23d234d4e1a7db982e6dc72c84aad452 = L.marker(
+                [10.0, 8.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_23d234d4e1a7db982e6dc72c84aad452.bindTooltip(
+                `<div>
+                     Country: Nigeria, Capital: Abuja
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1b722268d295ef801e0a21d08a8837ed = L.marker(
+                [-6.0, 71.5],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_1b722268d295ef801e0a21d08a8837ed.bindTooltip(
+                `<div>
+                     Country: British Indian Ocean Territory, Capital: Diego Garcia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_224ccac3d9a9725f83215a4a32221c9a = L.marker(
+                [32.0, -5.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_224ccac3d9a9725f83215a4a32221c9a.bindTooltip(
+                `<div>
+                     Country: Morocco, Capital: Rabat
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_841de15f829118f40838c033d030a7a6 = L.marker(
+                [-22.0, 24.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_841de15f829118f40838c033d030a7a6.bindTooltip(
+                `<div>
+                     Country: Botswana, Capital: Gaborone
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_803c44d7da72d91a7c24853f14471e0f = L.marker(
+                [8.0, -5.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_803c44d7da72d91a7c24853f14471e0f.bindTooltip(
+                `<div>
+                     Country: Ivory Coast, Capital: Yamoussoukro
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1ff71c13b08fad349bb70bf3b1fb2ceb = L.marker(
+                [-15.95, -5.72],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_1ff71c13b08fad349bb70bf3b1fb2ceb.bindTooltip(
+                `<div>
+                     Country: Saint Helena, Ascension and Tristan da Cunha, Capital: Jamestown
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b8172904bfa9848f8d1e9f1f31b2b2db = L.marker(
+                [11.5, 43.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_b8172904bfa9848f8d1e9f1f31b2b2db.bindTooltip(
+                `<div>
+                     Country: Djibouti, Capital: Djibouti
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8d9a47731d974bacd0de1bf3adcf071e = L.marker(
+                [-4.58333333, 55.66666666],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_8d9a47731d974bacd0de1bf3adcf071e.bindTooltip(
+                `<div>
+                     Country: Seychelles, Capital: Victoria
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_146e6e9075d276c4101f8530a40eec91 = L.marker(
+                [-20.28333333, 57.55],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_146e6e9075d276c4101f8530a40eec91.bindTooltip(
+                `<div>
+                     Country: Mauritius, Capital: Port Louis
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_01a290f639193e054f1f673f9acfbe74 = L.marker(
+                [6.0, 12.0],
+                {}
+            ).addTo(map_949c071d277c685cc31c59a1f1fbea78);
+        
+    
+            marker_01a290f639193e054f1f673f9acfbe74.bindTooltip(
+                `<div>
+                     Country: Cameroon, Capital: Yaoundé
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
+</html>
