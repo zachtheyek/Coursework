@@ -1,0 +1,29 @@
+---
+title: "solution"
+output: word_document
+---
+Read in the data.
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+attach(data)
+head(data)
+```
+Fit a model to the relevant predictors (see hw6) and print the model summary. 
+```{r}
+model = lm(GPA ~ HSGPA + SATV)
+summary(model)
+```
+Also print the ANOVA table for the overall model.
+```{r}
+anova(model)
+```
+Our hypotheses tests proceeds as follows: 
+  H_0: beta_i = 0, there is no relationship between a student's high school GPA / SAT verbal scores and their first year college GPA
+  H_a: beta_i != 0, there is a relationship between a student's high school GPA / SAT verbal scores and their first year college GPA
+  
+The test-statistics, degrees of freedom, and corresponding p-values for each of the predictors are:
+  HSGPA: t = 6.629, df = 1, p = 2.66e-10
+  SATV: t = 3.641, df = 1, p = 0.00034
+
+Thus, using a significance level of 0.05, we find that there's sufficient evidence to reject the null (for both cases) in favor of the alternative. We conclude that there is a relationship between a student's first year college GPA and their high school GPA / SAT verbal scores.
