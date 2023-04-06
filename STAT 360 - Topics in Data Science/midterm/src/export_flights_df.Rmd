@@ -1,0 +1,10 @@
+```{r}
+# Load the Lahman package
+library(nycflights13)
+
+# Load the Teams dataframe
+flights_df <- flights
+
+# Export the dataframe as a csv file
+write.csv(flights_df, file = "flights_df.csv")
+```
