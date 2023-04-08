@@ -1,0 +1,10 @@
+```{r}
+# Load the Lahman package
+library(Lahman)
+
+# Load the Teams dataframe
+Pitching_df <- Pitching
+
+# Export the dataframe as a csv file
+write.csv(Pitching_df, file = "pitching_df.csv")
+```
