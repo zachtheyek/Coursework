@@ -1,0 +1,7 @@
+```{r}
+library(mosaic)
+library(NHANES)
+
+people <- NHANES
+write.csv(people, file = "nhanes_df.csv")
+```
