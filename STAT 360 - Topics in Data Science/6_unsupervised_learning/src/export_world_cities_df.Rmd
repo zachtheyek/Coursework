@@ -1,0 +1,13 @@
+```{r}
+library(tidyverse)
+library(mdsr)
+library(readxl)
+library(maps)
+
+big_cities <- world_cities %>% 
+  arrange(desc(population)) %>%
+  head(4000) %>% 
+  select(longitude, latitude)
+write.csv(big_cities, file = "world_cities_df.csv")
+```
+
