@@ -1,0 +1,99 @@
+---
+output:
+  word_document: default
+---
+```{r}
+library(readr)
+data <- read_csv("FaithfulFaces.csv")
+attach(data)
+```
+```{r}
+head(data)
+```
+```{r}
+plot(Faithful~Attract)
+model = lm(Faithful~Attract)
+abline(model)
+```
+```{r}
+summary(model)
+anova(model)
+```
+```{r}
+model = lm(Faithful~Attract+Trust+SexDimorph)
+summary(model)
+anova(model)
+```
+```{r}
+cor(data[0:5])
+```
+```{r}
+plot(data[0:5])
+```
+
+
+
+```{r}
+data <- read_csv("Meniscus.csv")
+attach(data)
+```
+```{r}
+head(data)
+```
+```{r}
+plot(Stiffness~Displacement)
+model = lm(Stiffness~Displacement)
+abline(model)
+```
+```{r}
+summary(model)
+```
+```{r}
+anova(model)
+```
+```{r}
+library(dplyr)
+library(tidyverse)
+
+means <- data %>% 
+  group_by(Method) %>% 
+  summarize(mean_stiffness = mean(Stiffness))
+means
+```
+```{r}
+library(effsize)
+
+effect_size <- cohen.d(Stiffness[Method == 3], Stiffness[Method == 2])
+effect_size
+```
+
+
+
+```{r}
+data <- read_csv("Fluor.csv")
+attach(data)
+```
+```{r}
+head(data)
+```
+```{r}
+plot(ProteinProp~Calcium)
+model = lm(ProteinProp~Calcium)
+abline(model)
+```
+```{r}
+summary(model)
+```
+```{r}
+anova(model)
+```
+```{r}
+plot(model)
+```
+```{r}
+newx = data.frame(Calcium=-8.5)
+predict.lm(model, newx, interval='confidence')
+```
+```{r}
+predict.lm(model, newx, interval='prediction')
+```
