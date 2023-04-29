@@ -1,0 +1,29 @@
+---
+output:
+  word_document: default
+---
+```{r}
+library(readr)
+data <- read_csv("Diamonds.csv")
+attach(data)
+```
+```{r}
+head(data)
+```
+```{r}
+plot(TotalPrice~Carat)
+```
+```{r}
+model = lm(TotalPrice~Carat+I(Carat^2))
+summary(model)
+```
+```{r}
+plot(model)
+```
+```{r}
+model = lm(TotalPrice~Carat+I(Carat^2)+I(Carat^3))
+summary(model)
+```
+```{r}
+plot(model)
+```
