@@ -1,0 +1,26 @@
+---
+output:
+  word_document: default
+---
+```{r}
+library(readr)
+data <- read_csv("Diamonds.csv")
+attach(data)
+```
+```{r}
+head(data)
+```
+```{r}
+plot(TotalPrice~Carat)
+```
+```{r}
+model = lm(TotalPrice~Carat+I(Carat^2))
+summary(model)
+```
+```{r}
+newx = data.frame(Carat=0.5)
+predict.lm(model, newx, interval='confidence')
+```
+```{r}
+predict.lm(model, newx, interval='prediction')
+```
