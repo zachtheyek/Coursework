@@ -1,0 +1,43 @@
+```{r}
+library(readr)
+data <- read_csv("data.csv")
+head(data)
+```
+```{r}
+data_subset <- subset(data, visit_year >= 2020)
+attach(data_subset)
+head(data_subset)
+```
+```{r}
+class_model = lm(mins_spent~class)
+summary(class_model)
+```
+```{r}
+athlete_model = lm(mins_spent~student_athlete)
+summary(athlete_model)
+```
+```{r}
+gpa_model = lm(mins_spent~gpa)
+summary(gpa_model)
+```
+```{r}
+model = lm(mins_spent~class+student_athlete+gpa+I(class*student_athlete)+I(class*gpa)+I(student_athlete*gpa)+I(class*student_athlete*gpa))
+summary(model)
+```
+```{r}
+anova(model)
+```
+```{r}
+model_improved = lm(mins_spent~class+gpa+I(class*gpa))
+summary(model_improved)
+```
+```{r}
+anova(model_improved)
+```
+```{r}
+plot(model_improved)
+```
+```{r}
+data_subset_selected <- data_subset[, c("mins_spent", "class", "gpa")]
+cor(data_subset_selected)
+```
